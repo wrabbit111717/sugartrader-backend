@@ -1,0 +1,117 @@
+<div class="main">
+    <div class="admin-container">
+        <ul class="breadcrumb">
+        </ul>
+
+        <div class="row">
+            <div class="col-md-push-1 col-md-10">
+                <div class="portlet box blue-hoki">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-question"></i> <span>Frequent Ask Questions</span>
+                      </div>
+                      <div class="actions">
+                        <a href="javascript:;" class="btn btn-default btn-sm" id="btn_add">
+                            <i class="fa fa-plus"></i> Add 
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <table class="table table-striped table-hover table-bordered" id="faq_table">
+                            <thead>
+                                <tr>
+                                    <th width="10%"><i class="fa fa-flag"></i> Language</th>
+                                    <th widtg="15%"><i class="fa fa-tags"></i> Category</th>
+                                    <th width="15%"><i class="fa fa-envelope"></i> Email</th>
+                                    <th width="20%"><i class="fa fa-file"></i> Title</th>
+                                    <th width="40%"><i class="fa fa-comments"></i> Description</th>
+                                    <th><i class="fa fa-magic"></i> Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% faqs.forEach(function(faq) {%>
+                                    <tr>
+                                        
+                                        <td>
+                                            <label class="bold <% if(faq.language == 'EN') {%>text-danger<%} else {%>text-primary<%}%>"><%= faq.language %></label>
+                                        </td>
+                                        <td>
+                                            <%= faq.category %>                                            
+                                        </td>
+                                        <td>
+                                            <%= faq.email %>
+                                        </td>
+                                        <td><%= faq.title%></td>
+                                        <td><%= faq.content.slice(0, 85)%>... ...</td>
+                                        <td>
+                                            <button faq_id="<%= faq._id%>" faq_language="<%= faq.language%>" faq_title="<%= faq.title%>" faq_category="<%= faq.category%>" faq_content="<%= faq.content%>" type="button" class="btn btn-sm blue btn_edit" title="Edit"><i class="fa fa-pencil"></i></button>
+                                            <button faq_id="<%= faq._id%>" class="btn btn-danger btn-sm btn_delete" title="delete"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                <%});%>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="faqModal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title text-danger"><i class="fa fa-edit"></i> FAQ Edit</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="videoForm" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="language">Language <span class="require">*</span></label>
+                        <div class="col-md-3">
+                          <select id="faq_lang" class="form-control">
+                            <option value="EN">EN</option>
+                            <option value="GR">GR</option>
+                          </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="category">Category <span class="require">*</span></label>
+                            <div class="col-md-8">
+                              <select name="category" id="category" class="form-control">
+                                <% categories.forEach(function(category){%>
+                                    <option value="<%= category.name%>"><%= category.name%></option>
+                                <%})%>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Title <span class="require">*</span></label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Description <span class="require">*</span></label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="content" name="content" rows="10" placeholder="Please type description."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="btn_faq_save" faq_id=''><i class="fa fa-save"></i> Save</button>
+                        <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+<script src="../../js/admin/faq.js"></script>

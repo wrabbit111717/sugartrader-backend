@@ -1,0 +1,10 @@
+#main-title {
+    color: var(--light-text-color, #FFF);
+
+    font-family: Montserrat;
+    font-size: 58px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 80px; /* 137.931% */
+    letter-spacing: 0.2px;
+}

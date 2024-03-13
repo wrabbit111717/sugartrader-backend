@@ -1,0 +1,466 @@
+<div class="main">
+    <div class="admin-container">
+        <ul class="breadcrumb">
+        </ul>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="portlet box blue-hoki">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-home"></i> <span>Industries</span>
+                      </div>
+                      <div class="actions">
+                        <a href="javascript:;" class="btn btn-default btn-sm" id="btn_industry_add">
+                            <i class="fa fa-plus"></i> Add 
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <table class="table table-striped table-hover table-bordered" id="industry_table">
+							<thead>
+                                <tr>
+                                    <th width="60%">
+                                        <i class="fa fa-home"></i> Industry
+                                    </th>
+                                    <th width="40%">
+                                        <i class="fa fa-magic"></i> Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <% industries.forEach(function(industry) {%>
+                                        <tr industry_id="<%= industry._id%>">
+                                            <td>
+                                                <%= industry.name%>
+                                            </td>
+                                            <td>
+                                                <a class="industry_edit btn btn-sm btn-success" href="javascript:;" title="edit"><i class="fa fa-pencil"></i></a>
+                                                <a class="industry_delete btn btn-sm btn-danger" href="javascript:;" title="delete"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    <%});%>
+                                    
+							</tbody>
+							</table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="portlet box blue-hoki">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-users"></i> <span>Users</span>
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table table-striped table-bordered table-hover" id="user_table">
+							<thead>
+                                <tr>
+                                    <th>
+                                        <i class="fa fa-user"></i> Full Name
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-envelope"></i> Email
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-phone"></i> Phone
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-database"></i> Membership
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-calendar"></i> Created Date
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-check"></i> State
+                                    </th>
+                                    <th>
+                                        Permission
+                                    </th>
+                                    <th>
+                                        <i class="fa fa-magic"></i> Action
+                                    </th>
+                                </tr>
+							</thead>
+							<tbody>
+                                <% users.forEach(function(user) {%>
+                                <tr user_id="<%= user._id%>">
+                                    <td>
+                                        <%= user.name%> <%= user.surname%>
+                                    </td>
+                                    <td>
+                                        <%= user.email%>
+                                    </td>
+                                    <td>
+                                        <%= user.phone%>
+                                    </td>
+                                    <td>
+                                        <%if( user.membership == 0) {%>
+                                            <span class="label label-danger">Not veryfied</span>
+                                        <%} else if (user.membership == 1) {%>
+                                            <span class="label label-warning">Free</span>
+                                        <%} else if(user.membership == 2) {%>
+                                            <span class="label label-info">Common</span>
+                                        <%} else if(user.membership == 3) {%>
+                                            <span class="label label-primary">Medium</span>
+                                        <%} else if(user.membership == 4) {%>
+                                            <span class="label label-success">Advance</span>
+                                        <%}%>
+                                    </td>
+                                    <td>
+                                        <%= new Date(user.created_at).getFullYear()%>-<%= new Date(user.created_at).getMonth()+1%>-<%= new Date(user.created_at).getDate()%> <%= new Date(user.created_at).getHours()%>:<%= new Date(user.created_at).getMinutes()%>:<%= new Date(user.created_at).getSeconds()%>
+                                    </td>
+                                    <td>
+                                        <select class="form-control input-small state" name="state">
+                                            <%if(user.state == 0){%>
+                                                <option value="0" selected>Inactived</option>
+                                                <option value="1">Actived</option>
+                                            <%} else {%>
+                                                <option value="0">Inactived</option>
+                                                <option value="1" selected>Actived</option>
+                                            <%}%>                                            
+                                            
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control input-small permission" name="permission">
+                                            <%if(user.permission == 1){%>
+                                                <option value="1" selected>Administrator</option>
+                                                <option value="2">Common user</option>
+                                            <%} else {%>
+                                                <option value="1">Administrator</option>
+                                                <option value="2" selected>Common user</option>
+                                            <%}%>                                            
+                                            
+                                        </select>
+                                    </td>
+                                    <td>
+                                        
+                                        <button class="btn btn-sm btn-danger btn_user_delete"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <%});%>
+							</tbody>
+						</table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div><hr>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="icon-tag"></i> <span>Categories</span>
+                      </div>
+                      <div class="actions">
+                        <a href="javascript:;" class="btn btn-default btn-sm" id="btn_add">
+                            <i class="fa fa-plus"></i> Add 
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="portlet-body">
+                        <table class="table table-striped table-hover table-bordered" id="category_table">
+							<thead>
+                                <tr>
+                                    <th width="10%">
+                                        <i class="fa fa-flag"></i> Language
+                                    </th>
+                                    <th width="60%">
+                                        <i class="fa fa-tags"></i> Category
+                                    </th>
+                                    <th width="30%">
+                                        <i class="fa fa-magic"></i> Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <% categories.forEach(function(category) {%>
+                                        <tr cat_id="<%= category._id%>">
+                                            <td>
+                                                <label class="bold <% if(category.language == 'EN') {%>text-danger<%}else{%>text-primary<%}%>"><%= category.language %></label>
+                                            </td>
+                                            <td>
+                                                <%= category.name%>
+                                            </td>
+                                            <td>
+                                                <a class="edit btn btn-sm btn-success" href="javascript:;" title="edit"><i class="fa fa-pencil"></i></a>
+                                                <a class="delete btn btn-sm btn-danger" href="javascript:;" title="delete"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    <%});%>
+                                    
+							</tbody>
+							</table>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                              <div class="caption">
+                                <i class="icon-social-dropbox"></i> <span>Posts</span>
+                              </div>
+                              <div class="tools">
+                                <a href="#" class="collapse" data-original-title="" title="">
+                                </a>
+                              </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table table-striped table-bordered table-hover" id="post_table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <i class="fa fa-flag"></i> Language
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-flag"></i> Industry
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-tags"></i> Category
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-comments-o"></i> Content
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-user"></i> Client Name
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-calendar"></i> Created Date
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-magic"></i> Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="post_tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                              <div class="caption">
+                                <i class="icon-note"></i> <span>Post Edit</span>
+                              </div>
+                              <div class="tools">
+                                <a href="#" class="collapse" data-original-title="" title="">
+                                </a>
+                              </div>
+                            </div>
+        
+                            <div class="portlet-body form">
+                                <form ref='uploadForm' class="form-horizontal" action='/post/save' enctype="multipart/form-data" method="POST">
+                                    
+                                    <input type="hidden" name="categoryname" id="categoryname" value="Article">
+                                    <div class="form-body">
+                                        <input type="hidden" id="fullname" value="<%= session.name%> <%= session.surname%>">
+                                        <input type="hidden" id="email" value="<%= session.email%>">
+                                        <input type="hidden" id="phone" value="<%= session.phone%>">
+                                        <div class="form-group">
+                                            <label class="col-md-1 control-label">Category <span class="require">*</span></label>
+                                            <div class="col-md-3">
+                                                <select class="select2me" style="width: 100%;" name="category" id="category">
+                                                    <% categories.forEach(function(category) {%>
+                                                    <option value="<%= category._id%>"><%= category.name%></option>
+                                                    <%});%>
+                                                </select>
+                                            </div>
+                                            <label class="col-md-1 control-label">Language <span class="require">*</span></label>
+                                            <div class="col-md-2">
+                                                <select name="country" id="language">
+                                                    <option value="GR">GR</option>
+                                                    <option value="EN">EN</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-md-1 control-label">Industry <span class="require">*</span></label>
+                                            <div class="col-md-3">
+                                                <select name="industry" id="industry" class="select2me" style="width: 100%;">
+                                                    <option value="all">All</option>
+                                                    <% industries.forEach(function(industry) {%>
+                                                        <option value="<%= industry.name%>"><%= industry.name%></option>
+                                                    <%});%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-md-1 control-label">Title <span class="require">*</span></label>
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" name="title" id="title">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <textarea class="ckeditor form-control" id="content" name="content" rows="20"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">Select Image</label>
+                                                    <div class="col-md-7">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="input-group input-large">
+                                                                <div class="form-control uneditable-input span3" data-trigger="fileinput">
+                                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename">
+                                                                    </span>
+                                                                </div>
+                                                                <span class="input-group-addon btn default btn-file">
+                                                                <span class="fileinput-new">
+                                                                Select file </span>
+                                                                <span class="fileinput-exists">
+                                                                Change </span>
+                                                                <input type="file" name="photo" id="photo" accept=".jpg, .jpeg, .png">
+                                                                </span>
+                                                                
+                                                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" id="btn_remove" data-dismiss="fileinput">
+                                                                Remove </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="postForm">
+
+                                                    </div>
+                                                    <button type="button" class="btn blue" id="btn_upload"><i class="fa fa-upload"></i> Upload</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions" id="btn_div">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <button type="button" class="btn btn-danger" id="btn_preview" data-toggle="modal" data-target="#previewModal"><i class="fa fa-eye"></i> Preview</button>
+                                                <button type="button" class="btn green" id="btn_save"><i class="fa fa-check"></i> Submit</button>
+                                                <button type="reset" class="btn purple" id="btn_reset"><i class="icon-refresh"></i> Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-modal-lg" id="preview" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title text-success"><i class="icon-eye"></i> Post Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-user text-danger pull-left"></i>
+                        <label class="bold col-md-3" id="label_name"></label>
+                        <i class="fa fa-envelope text-danger pull-left"></i>
+                        <label class="bold col-md-3" id="label_email"></label>
+                        <i class="fa fa-phone text-danger pull-left"></i>
+                        <label class="bold col-md-2" id="label_phone"></label>
+                        <i class="fa fa-calendar pull-left text-danger"></i>
+                        <label class="col-md-3 bold" id="label_created_at"></label>
+                        <i class="fa fa-tags pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="label_category"></label>
+                        <i class="fa fa-flag pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="label_lang"></label>
+                        <i class="fa fa-flag pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="label_industry"></label>
+                    </div>
+                    
+                </div><hr>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 id="post_title"></h2>
+                        <div id="preview_body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="slide_div">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade bs-modal-lg" id="previewModal" tabindex="-1" role="basic" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title text-success"><i class="icon-eye"></i> Preview</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-user text-danger pull-left"></i>
+                        <label class="bold col-md-3" id="pre_label_name"></label>
+                        <i class="fa fa-envelope-o text-danger pull-left"></i>
+                        <label class="bold col-md-3" id="pre_label_email"></label>
+                        <i class="fa fa-phone text-danger pull-left"></i>
+                        <label class="bold col-md-2" id="pre_label_phone"></label>
+                        <i class="fa fa-calendar pull-left text-danger"></i>
+                        <label class="col-md-3 bold" id="pre_label_created_at"></label>
+                        <i class="fa fa-tags pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="pre_label_category"></label>
+                        <i class="fa fa-flag pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="pre_label_lang"></label>
+                        <i class="fa fa-flag pull-left text-danger"></i>
+                        <label class="col-md-2 bold" id="pre_label_industry"></label>
+                    </div>
+                    
+                </div><hr>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 id="pre_post_title"></h2>
+                        <div id="pre_preview_body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="pre_slide_div">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script src="../../js/admin/admin.js"></script>

@@ -1,0 +1,142 @@
+<div class="main">
+    <div class="user-container">
+      <ul class="breadcrumb">
+      </ul>
+      <!-- BEGIN SIDEBAR & CONTENT -->
+      <div class="row margin-bottom-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12 col-sm-12">
+          
+          <div class="content-page">
+              <input type="hidden" id="post_id" value="<%= post_id%>">
+            <div class="row">
+              <!-- BEGIN LEFT SIDEBAR -->            
+              <div class="col-md-9 col-sm-9 blog-item">
+                <div class="row">
+                  <label style="font-size: 35px;" class="col-md-4">Post View</label>
+                  <div class="col-md-push-6 col-md-3" id="publish_div">
+                    <input type="hidden" id="left_membership" value="<%= session.left_membership%>">
+                    <button type="button" class="btn btn-default" id="btn_purchase"><i class="icon-basket"></i> Purchase post</button>
+                  </div>
+                </div><hr>
+                <div id="post_div">
+
+                </div>
+                <ul class="blog-info">
+                  <li><i class="fa fa-user"></i> <%= post.poster%></li>
+                  <li><i class="fa fa-calendar"></i> <%= new Date(post.created_at).getFullYear()%>-<%= new Date(post.created_at).getMonth()+1%>-<%= new Date(post.created_at).getDate()%> <%= new Date(post.created_at).getHours()%>:<%= new Date(post.created_at).getMinutes()%>:<%= new Date(post.created_at).getSeconds()%></li>
+                  <li><i class="fa fa-thumbs-up"></i> <span id="shared_span"><%= post.shared%></span></li>
+                  <li><i class="fa fa-tags"></i> <%= post.category%></li>
+                  <li><button class="btn btn-sm btn-default btn_preview" type="button"><i class="fa fa-eye"></i> Preview</button></li>
+                  <li><a class="btn btn-default btn-sm" href="/auth/profile/photo_generate"><i class="fa fa-paint-brush"></i> Logo Generate</a></li><br>
+                  <li>
+                    <div class="row" style="margin-bottom: -20px!important;">
+                      <div class="col-md-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="input-group input-small">
+                              <div class="form-control uneditable-input span3" data-trigger="fileinput">
+                                  <i class="fa fa-file fileinput-exists"></i>&nbsp; <span class="fileinput-filename">
+                                  </span>
+                              </div>
+                              <span class="input-group-addon btn default btn-file btn-sm">
+                              <span class="fileinput-new">
+                              Select file </span>
+                              <span class="fileinput-exists">
+                              Change </span>
+                              <input type="file" name="photo" id="photo" accept=".jpg, .jpeg, .png">
+                              </span>
+                              
+                              <a href="javascript:;" class="input-group-addon btn red btn-sm fileinput-exists" id="btn_remove" data-dismiss="fileinput">
+                              Remove </a>
+                              
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <button type="button" class="btn btn-default" id="btn_upload" title="Upload"><i class="fa fa-upload"></i></button>
+                      </div>
+                      <input type="hidden" id="logo">
+                    </div>
+                  </li><br>
+                  <li>
+                    <i class="fa fa-map-marker"></i> 
+                    <input type="radio" class="form-control" name="logo_position" id="tl" value="tl" checked> <label for="tl">Top left</label>
+                    <input type="radio" class="form-control" name="logo_position" id="tr" value="tr"> <label for="tr">Top right</label>
+                    <input type="radio" class="form-control" name="logo_position" id="bl" value="bl"> <label for="bl">Bottom left</label>
+                    <input type="radio" class="form-control" name="logo_position" id="br" value="br"> <label for="br">Bottom right</label>
+                  </li>
+                </ul>
+              </div>
+              <!-- END LEFT SIDEBAR -->
+
+              <!-- BEGIN RIGHT SIDEBAR -->            
+              <div class="col-md-3 col-sm-3 blog-sidebar">
+                <!-- CATEGORIES START -->
+                <h2 class="no-top-space">Categories </h2>
+                <div class="row">
+                  <label class="control-label col-md-4 bold" style="padding-top: 7px; font-size: 16px;">Search : </label>
+                  <div class="col-md-8 input-icon">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="form-control" id="search" placeholder="Type category">
+                  </div>
+                </div><hr>
+                
+                <div class="scroller" style="height: 1000px;" data-always-visible="0" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                    <ul class="nav sidebar-categories margin-bottom-40" id="categories">
+                        <% categories.forEach(function(category) {%>
+                            <li><a href="/post/list?category=<%= category._id%>"><%= category.name%></a></li>
+                        <%})%>
+                    
+                    </ul>
+                </div>
+                <!-- CATEGORIES END --> 
+              </div>
+              <!-- END RIGHT SIDEBAR -->            
+            </div>
+          </div>
+        </div>
+        <!-- END CONTENT -->
+      </div>
+      <!-- END SIDEBAR & CONTENT -->
+    </div>
+  </div>
+
+  <div class="modal fade bs-modal-lg" id="previewModal" tabindex="-1" role="basic" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                  <label class="modal-title text-success col-md-7" style="font-size: 23px;" id="modal_title"><i class="icon-eye" style="font-size: 23px;"></i> Preview</label>
+                  <!-- <div class="col-md-2"> -->
+                    <a href="#" class="btn btn-default" id="btn_copy_text"><i class="fa fa-save"></i> Copy Text</a>
+                    <a href="#" class="btn btn-default" id="btn_copy_img"><i class="fa fa-save"></i> Copy Image</a>
+                    <a href="#" class="btn btn-default" id="btn_download"><i class="fa fa-download"></i> Download</a>
+                  <!-- </div> -->
+                </div>
+                
+            </div>
+            <div class="modal-body" id="modal_body">
+                <div class="row">
+                    <div class="col-md-12" id="post_text">
+                        <h2 id="preview_title"></h2>
+                        <div id="preview_body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <input type="hidden" id="share_img">
+                    <div class="col-md-12" id="slide_div">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn default" id="btn_close" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+<script src="../../js/post/view.js"></script>

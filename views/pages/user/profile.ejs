@@ -1,0 +1,351 @@
+<link href="../../css/profile.css" rel="stylesheet"  type="text/css">
+
+<div class="main">
+    <div class="user-container">
+      <ul class="breadcrumb">
+      </ul>
+      <!-- BEGIN CONTENT -->
+      <div class="row margin-bottom-20">
+        <form ref='uploadForm' action='/auth/profile/save' enctype="multipart/form-data" method="POST">
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new thumbnail" style="width: auto; height: auto;">
+                    <img src="../../uploads/users/<%=session.photo%>" style="width: 250px; height: 250px;" alt=""/>
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail"  style="width: 260px; height: 260px;">
+                </div>
+                <div id="photo_btn_div">
+                  <span class="btn default btn-file">
+                  <span class="fileinput-new"><i class="fa fa-upload"></i> Select </span>
+                  <span class="fileinput-exists"><i class="icon-reload"></i> Change </span>
+                  <input type="file" name="photo">
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-8 profile-info">
+                  <h1><%= session.name%> <%= session.surname%> <button class="btn blue pull-right btn-sm" type="button" id="btn_profile_edit"><i class="fa fa-pencil"></i> Edit</button><button type="button" class="btn btn-sm btn-default pull-right" id="btn_cancel"><i class="fa fa-times"></i> Cancel</button><button class="btn btn-sm btn-success pull-right" type="submit" id="btn_profile_save"><i class="fa fa-save"></i> Save</button></h1>
+                  <p id="introduction_div"><%= session.introduction%></p><hr>
+                  <ul class="list-inline">
+                    <li>
+                      <i class="fa fa-envelope"></i> <%= session.email %>
+                    </li>
+                    <li>
+                      <i class="fa fa-phone"></i> <%= session.phone%>
+                    </li>
+                    <% if(session.permission == 1) {%>
+                    <li>
+                      <i class="fa fa-star"></i> <%= post_cnt%> posted
+                    </li>
+                    <%}%>
+                    <% if(session.permission == 2) {%>
+                      <li>
+                        <i class="fa fa-thumbs-up"></i> <%= session.share_cnt%> shared
+                      </li>
+                      <%}%>
+                  </ul>
+                </div>
+                
+                <!--end col-md-8-->
+                <div class="col-md-4">
+                  <div class="portlet sale-summary">
+                    <div class="portlet-title">
+                      <div class="caption">
+                         Account Summary
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                      <ul class="list-unstyled">
+                        
+                        <li>
+                          <span class="sale-info">
+                          permission <i class="fa fa-img-down"></i>
+                          </span>
+                          <span class="sale-num">
+                            <%if(session.permission == 1) {%>
+                              Administrator
+                            <%} else {%>
+                              Common User
+                            <%}%>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="sale-info">
+                          State <i class="fa fa-img-down"></i>
+                          </span>
+                          <span class="sale-num">
+                            <%if(session.state == 0) {%>
+                              <i class="fa fa-check text-muted" title="Inactived"></i>
+                            <%} else {%>
+                              <i class="fa fa-check" title="Actived"></i>
+                            <%}%>
+                          </span>
+                        </li>
+                        <% if(session.permission == 2) {%>
+                        <li>
+                          <span class="sale-info">
+                          Membership <i class="fa fa-img-up"></i>
+                          </span>
+                          <span class="sale-num" id="membership_summary">
+                            <%= session.membership %>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="sale-info">
+                          Left Membership <i class="fa fa-img-up"></i>
+                          </span>
+                          <span class="sale-num" id="left_membership_summary">
+                            <%= session.left_membership %>
+                          </span>
+                        </li>
+                        <li>
+                          <span class="sale-num" id="left_date">
+                            <%= new Date(session.created_at).getFullYear() %> / <%= new Date(session.created_at).getMonth()+1 %> / <%= new Date(session.created_at).getDate() %> ~ <%= new Date(session.created_at).getDate()+7 %>
+                          </span>
+                        </li>
+                        <%}%>
+                        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-md-4-->
+              </div>
+              <!--end row-->
+            </div>
+          </div>
+        </form>
+        
+      </div>
+      <% if(session.permission == 2) {%>
+      <hr>
+      <div class="row margin-top-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12">
+          <h1>Memberships</h1>
+          <div class="content-page" style="padding: 50px 10% 0 10%;">
+            <div class="row margin-bottom-40">
+              <!-- Pricing -->
+              <div class="col-md-3">
+                <% if(session.membership == 1){%>
+                <div class="pricing hover-effect pricing-active" id="pricing_free">
+                  <div class="pricing-head pricing-head-active" id="free_head">
+                <%} else {%>
+                <div class="pricing hover-effect" id="pricing_free">
+                  <div class="pricing-head" id="free_head">
+                <%}%>
+                    <h3>Free
+                    <span>
+                       One post plan
+                    </span>
+                    </h3>
+                    <h4>Free
+                    </h4>
+                  </div>
+                  <div class="pricing-footer">
+                    <p>
+                    </p>
+                      <% if(session.membership == 1){%>
+                        <button type="button" class="btn btn-primary" id="btn_free" disabled="disabled">
+                        Got
+                        </button>
+                      <%} else {%>
+                        <button type="button" class="btn btn-primary" id="btn_free">
+                       Get <i class="m-icon-swapright m-icon-white"></i>
+                       </button>
+                      <%}%> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <% if(session.membership == 2){%>
+                <div class="pricing hover-effect pricing-active" id="pricing_common">
+                  <div class="pricing-head pricing-head-active" id="common_head">
+                <%} else {%>
+                  <div class="pricing hover-effect" id="pricing_common">
+                    <div class="pricing-head" id="common_head">
+                <%}%>
+                    <h3>Basic
+                    <span>
+                       2 post per week
+                    </span>
+                    </h3>
+                    <h4><i class="fa fa-eur"></i>20<i>.00</i>
+                    <span>
+                       Per Month
+                    </span>
+                    </h4>
+                  </div>
+                  <div class="pricing-footer">
+                    <p>
+                       <h4>Year subscription 190</h4>
+                    </p>
+                      <% if(session.membership == 2){%>
+                        <button type="button" class="btn btn-primary" id="btn_common" disabled="disabled">
+                        Got
+                        </button>
+                      <%} else {%>
+                        <button type="button" class="btn btn-primary" id="btn_common">
+                       Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                       </button>
+                      <%}%>  
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <% if(session.membership == 3){%>
+                <div class="pricing hover-effect pricing-active" id="pricing_medium">
+                  <div class="pricing-head pricing-head-active" id="medium_head">
+                <%} else {%>
+                  <div class="pricing hover-effect" id="pricing_medium">
+                    <div class="pricing-head" id="medium_head">
+                <%}%>
+                    <h3>Medium
+                    <span>
+                       3 post per week
+                    </span>
+                    </h3>
+                    <h4><i class="fa fa-eur"></i>25<i>.00</i>
+                    <span>
+                       Per Month
+                    </span>
+                    </h4>
+                  </div>
+                  <div class="pricing-footer">
+                    <p>
+                       <h4>Year subscription 240</h4>
+                    </p>
+                      <% if(session.membership == 3){%>
+                        <button type="button" class="btn btn-primary" id="btn_medium" disabled="disabled">
+                        Got
+                        </button>
+                      <%} else {%>
+                        <button type="button" class="btn btn-primary" id="btn_medium">
+                       Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                       </button>
+                      <%}%> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <% if(session.membership == 4){%>
+                <div class="pricing hover-effect pricing-active" id="pricing_advance">
+                  <div class="pricing-head pricing-head-active" id="advance_head">
+                <%} else {%>
+                  <div class="pricing hover-effect" id="pricing_advance">
+                    <div class="pricing-head" id="advance_head">
+                <%}%>
+                    <h3>Advance
+                    <span>
+                       4 post per week
+                    </span>
+                    </h3>
+                    <h4><i class="fa fa-eur"></i>30<i>.00</i>
+                    <span>
+                       Per Month
+                    </span>
+                    </h4>
+                  </div>
+                  <div class="pricing-footer">
+                    <p>
+                       <h4>Year subscription 290</h4>
+                    </p>
+                    <% if(session.membership == 4){%>
+                    <button type="button" class="btn btn-primary" id="btn_advance" disabled="disabled">
+                        Got
+                    </button>
+                    <%} else {%>
+                    <button type="button" class="btn btn-primary" id="btn_advance">
+                       Sign Up <i class="m-icon-swapright m-icon-white"></i> 
+                      
+                    </button>
+                      <%}%> 
+                  </div>
+                </div>
+              </div>
+              <!--//End Pricing -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="confirmModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title text-danger"><i class="icon-credit-card"></i> Payment Details</h4>
+                </div>
+                <div class="modal-body">
+    
+                  <div class="row">
+                    <div class="col-md-push-1 col-md-10">
+                      <form role="form">
+                        <div class="form-body">
+                          <div class="form-group form-md-line-input has-error">
+                            <div class="input-icon">
+                              <input type="text" class="form-control has-error" id="fullname">
+                              <label for="form_control_1">NAME</label>
+                              <i class="icon-user-following"></i>
+                            </div>
+                          </div>
+                          <div class="form-group form-md-line-input has-error">
+                            <div class="input-icon">
+                              <input type="text" class="form-control" id="card_number">
+                              <label for="form_control_1">CARD NUMBER</label>
+                              <i class="icon-credit-card"></i>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group form-md-line-input has-error">
+                                <div class="input-icon">
+                                  <input type="number" class="form-control" id="month" min="1" max="12">
+                                  <label for="form_control_1">MONTH</label>
+                                  <i class="icon-calendar"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group form-md-line-input has-error">
+                                <div class="input-icon">
+                                  <input type="number" class="form-control" id="year">
+                                  <label for="form_control_1">YEAR</label>
+                                  <i class="icon-calendar"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group form-md-line-input has-error">
+                                <div class="input-icon">
+                                  <input type="number" class="form-control" id="cvc">
+                                  <label for="form_control_1">CVC</label>
+                                  <i class="icon-lock"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <h3 class="bold text-center ammount_row">Payment ammount : <span id="payment_ammount" class="text-danger payment_span"></span> <span class="text-danger payment_span"><i class="fa fa-eur payment_span"></i></span></h3>
+                          <div class="row text-center payment_row">
+                            <button type="button" class="btn btn-danger btn-lg" id="btn_confirm">PAY</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <%}%>
+      <!-- END CONTENT -->
+    </div>
+  </div>
+  
+
+<script src="../../js/user/profile.js"></script>

@@ -1,0 +1,286 @@
+<link href="../../css/profile.css" rel="stylesheet"  type="text/css">
+<div class="main">
+  <div class="user-container">
+    <ul class="breadcrumb">
+    </ul>
+    <form class="form-horizontal" role="form" id="registerForm">
+      <!-- BEGIN SIDEBAR & CONTENT -->
+      <div class="row margin-bottom-40">
+        <!-- BEGIN SIDEBAR -->
+        <div class="sidebar col-md-3 col-sm-3">
+
+          
+        </div>
+        <!-- END SIDEBAR -->
+
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-9 col-sm-9">
+          <h2 class="text-success bold">Create an account</h2>
+          <div class="content-form-page">
+            <div class="row">
+              <div class="col-md-7 col-sm-7">
+                  <fieldset>
+                    <legend>Your personal details</legend>
+                    <div class="form-group">
+                      <label class="col-lg-4 control-label" for="language">Language <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <select name="country" id="language" style="width: 100%;">
+                          <option value="EN">EN</option>
+                          <option value="GR">GR</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name" class="col-lg-4 control-label">Name <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" id="name" name="name">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="surname" class="col-lg-4 control-label">Surname <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="text" class="form-control" id="surname" name="surname">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-lg-4 control-label">Phone <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                      </div>
+                    <div class="form-group">
+                      <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="email" class="form-control" id="email" name="email">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Your password</legend>
+                    <div class="form-group">
+                      <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="password" class="form-control" id="password" name="password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="confirm-password" class="col-lg-4 control-label">Re-password <span class="require">*</span></label>
+                      <div class="col-lg-8">
+                        <input type="password" class="form-control" id="repassword" name="repassword">
+                        
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="row">
+                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
+                      <button type="button" id="btn_submit" class="btn btn-primary">Create an account</button>
+                      <button type="button" class="btn btn-default">Cancel</button>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4 col-sm-4 pull-right">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END CONTENT -->
+      </div>
+      <!-- END SIDEBAR & CONTENT -->
+    </form>
+  </div>
+  
+</div>
+<div class="modal fade bs-modal-lg" id="membershipModal" data-backdrop="static" data-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-danger">Buy Membership</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <div class="content-page">
+              <div class="row margin-bottom-40">
+                <!-- Pricing -->
+                <div class="col-md-3">
+                  <div class="pricing hover-effect" id="pricing_free">
+                    <div class="pricing-head" id="free_head">
+                      <h3>Free
+                      <span>
+                         One post plan
+                      </span>
+                      </h3>
+                      <h4>Free
+                      </h4>
+                    </div>
+                    <div class="pricing-footer">
+                      <p>
+                      </p>
+                        <button type="button" class="btn btn-primary" id="btn_free">
+                         Get <i class="m-icon-swapright m-icon-white"></i>
+                        </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pricing hover-effect" id="pricing_common">
+                      <div class="pricing-head" id="common_head">
+                      <h3>Basic
+                      <span>
+                         2 post per week
+                      </span>
+                      </h3>
+                      <h4><i class="fa fa-eur"></i>20<i>.00</i>
+                      <span>
+                         Per Month
+                      </span>
+                      </h4>
+                    </div>
+                    <div class="pricing-footer">
+                      <p>
+                         <h4>Year subscription 190</h4>
+                      </p>
+                          <button type="button" class="btn btn-primary" id="btn_common">
+                         Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                         </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pricing hover-effect" id="pricing_medium">
+                      <div class="pricing-head" id="medium_head">
+                      <h3>Medium
+                      <span>
+                         3 post per week
+                      </span>
+                      </h3>
+                      <h4><i class="fa fa-eur"></i>25<i>.00</i>
+                      <span>
+                         Per Month
+                      </span>
+                      </h4>
+                    </div>
+                    <div class="pricing-footer">
+                      <p>
+                         <h4>Year subscription 240</h4>
+                      </p>
+                          <button type="button" class="btn btn-primary" id="btn_medium">
+                         Sign Up <i class="m-icon-swapright m-icon-white"></i>
+                         </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="pricing hover-effect" id="pricing_advance">
+                      <div class="pricing-head" id="advance_head">
+                      <h3>Advance
+                      <span>
+                         4 post per week
+                      </span>
+                      </h3>
+                      <h4><i class="fa fa-eur"></i>30<i>.00</i>
+                      <span>
+                         Per Month
+                      </span>
+                      </h4>
+                    </div>
+                    <div class="pricing-footer">
+                      <p>
+                         <h4>Year subscription 290</h4>
+                      </p>
+                      <button type="button" class="btn btn-primary" id="btn_advance">
+                         Sign Up <i class="m-icon-swapright m-icon-white"></i> 
+                        
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--//End Pricing -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+              <h4 class="modal-title text-danger"><i class="icon-credit-card"></i> Payment Details</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-push-1 col-md-10">
+                <form role="form" action="/auth/membership_save" method="POST" id="paymentForm">
+                  <input type="hidden" name="user_id" id="user_id">
+                  <input type="hidden" name="membership" id="membership">
+                  <div class="form-body">
+                    <div class="form-group form-md-line-input has-error">
+                      <div class="input-icon">
+                        <input type="text" class="form-control has-error" id="fullname" name="fullname">
+                        <label for="form_control_1">NAME</label>
+                        <i class="icon-user-following"></i>
+                      </div>
+                    </div>
+                    <div class="form-group form-md-line-input has-error">
+                      <div class="input-icon">
+                        <input type="text" class="form-control" id="card_number" name="cardnumber">
+                        <label for="form_control_1">CARD NUMBER</label>
+                        <i class="icon-credit-card"></i>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group form-md-line-input has-error">
+                          <div class="input-icon">
+                            <input type="number" class="form-control" id="month" min="1" max="12" name="month">
+                            <label for="form_control_1">MONTH</label>
+                            <i class="icon-calendar"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group form-md-line-input has-error">
+                          <div class="input-icon">
+                            <input type="number" class="form-control" id="year" name="year">
+                            <label for="form_control_1">YEAR</label>
+                            <i class="icon-calendar"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group form-md-line-input has-error">
+                          <div class="input-icon">
+                            <input type="number" class="form-control" id="cvc" name="cvc">
+                            <label for="form_control_1">CVC</label>
+                            <i class="icon-lock"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" id="amount" name="amount">
+                    <h3 class="bold text-center ammount_row">Payment ammount : <span id="payment_ammount" class="text-danger payment_span"></span> <span class="text-danger payment_span"><i class="fa fa-eur payment_span"></i></span></h3>
+                    <div class="row text-center payment_row">
+                      <button type="button" class="btn btn-danger btn-lg" id="btn_confirm">PAY</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+          </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<script src="../../../js/auth/register.js"></script>

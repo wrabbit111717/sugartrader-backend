@@ -1,0 +1,55 @@
+<div class="main">
+    <div class="user-container">
+      <ul class="breadcrumb">
+      </ul>
+      <div class="row margin-bottom-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12 col-sm-12">
+          <h1>Frequently Asked Questions</h1>
+          <div class="content-page">
+            <div class="row">
+              <div class="col-md-3 col-sm-3">
+                <ul class="tabbable faq-tabbable">
+                   <% for(var i = 0 ; i < categories.length ; i ++) {%>
+                     <li>
+                        <a href="#tab" category="<%= categories[i].name%>" class="faq_tab" data-toggle="tab"><%= categories[i].name%></a>
+                     </li>
+                        
+                   <%}%>
+                  
+                </ul>
+              </div>
+              <div class="col-md-9 col-sm-9">
+                  <div class="tab-content" style="padding:0; background: #fff;">
+                    
+                     <div class="tab-pane active" id="tab">
+                        <div class="panel-group" id="faqs">
+                           <% for(var i = 0 ; i < faqs.length ; i ++) {%>
+                           <div class="panel panel-default">
+                              <div class="panel-heading">
+                                 <h4 class="panel-title">
+                                    <a href="#faqs_<%= i+1%>" data-parent="#faqs" data-toggle="collapse" class="accordion-toggle collapsed">
+                                    <%= i+1%>. <%= faqs[i].title%>
+                                    </a>
+                                 </h4>
+                              </div>
+                              <div class="panel-collapse collapse" id="faqs_<%= i+1%>">
+                                 <div class="panel-body">
+                                    <p style="font-size: 15px;"><%= faqs[i].content%></p>
+                                 </div>
+                              </div>
+                           </div>
+                           <%}%>
+                        </div>
+                     </div>
+                       
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END CONTENT -->
+      </div>
+    </div>
+  </div>
+  <script src="../../js/user/faq.js"></script>
