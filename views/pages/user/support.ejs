@@ -1,0 +1,53 @@
+<div class="main">
+    <div class="user-container">
+        <ul class="breadcrumb">
+        </ul>
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>Support</h1>
+                <div class="content-page">
+                    <% if(error != '') {%>
+                        <div class="alert alert-block alert-danger fade in col-md-push-3 col-md-7">
+                          <button type="button" class="close" data-dismiss="alert"></button>
+                          <lable class="alert-heading bold">Alert!</label> <span><%= error%></span>
+                            
+                        </div>
+                    <%}%>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal" role="form" id="supportForm" method="POST" action="/support_save">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Name <span class="require">*</span></label>
+                                        <div class="col-md-4">
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Email <span class="require">*</span></label>
+                                        <div class="col-md-4">
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Describe your problem <span class="require">*</span></label>
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" id="content" name="content" rows="10" placeholder="Please ask for a post"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center" style="margin-top: 40px;">
+                                        <button class="btn btn-success" type="button" id="btn_save"><i class="fa fa-save"></i> Submit</button>
+                                        <button class="btn btn-danger" type="reset" id="btn_reset"><i class="icon-reload"></i> Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+</div>
+<script src="../../js/user/support.js"></script>

@@ -1,0 +1,72 @@
+{
+  "polyfillFiles": [
+    "static/chunks/polyfills-c67a75d1b6f99dc8.js"
+  ],
+  "devFiles": [],
+  "ampDevFiles": [],
+  "lowPriorityFiles": [
+    "static/zMu_Z0egx_P4xMMR0bC1J/_buildManifest.js",
+    "static/zMu_Z0egx_P4xMMR0bC1J/_ssgManifest.js"
+  ],
+  "rootMainFiles": [],
+  "pages": {
+    "/": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/index-d3dd1513661f3685.js"
+    ],
+    "/_app": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/css/0803ee78ea45c16a.css",
+      "static/chunks/pages/_app-d22ede55f4b4e5cd.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/_error-5a00309fd5f4b49e.js"
+    ],
+    "/auth/signin": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/fec483df-9b1a7f1e55640a41.js",
+      "static/chunks/912-c9b56c3a84377dcc.js",
+      "static/chunks/pages/auth/signin-2dcc600bc9faa622.js"
+    ],
+    "/auth/verify/[token]": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/auth/verify/[token]-0ff7d982d33ff0cf.js"
+    ],
+    "/home": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/home-28e2ac8c74eac6b6.js"
+    ],
+    "/modules/contractForm": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/modules/contractForm-a1abf778294eea2f.js"
+    ],
+    "/negociation": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/negociation-0bfba7d6d8f02467.js"
+    ],
+    "/offers": [
+      "static/chunks/webpack-2df7a8d27de1794c.js",
+      "static/chunks/framework-5429a50ba5373c56.js",
+      "static/chunks/main-930135e47dff83e9.js",
+      "static/chunks/pages/offers-bc09747590dca063.js"
+    ]
+  },
+  "ampFirstPages": []
+}

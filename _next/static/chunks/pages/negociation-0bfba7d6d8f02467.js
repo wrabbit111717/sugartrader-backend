@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[119],{6115:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/negociation",function(){return _(9834)}])},9834:function(n,u,_){"use strict";_.r(u);var t=_(5893),i=_(4523);u.default=()=>(0,t.jsx)(i.x,{})}},function(n){n.O(0,[888,774,179],function(){return n(n.s=6115)}),_N_E=n.O()}]);

@@ -1,0 +1,44 @@
+<div class="main">
+    <div class="user-container">
+      <ul class="breadcrumb">
+      </ul>
+      <div class="row margin-bottom-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12 col-sm-12">
+          <h1>Training</h1>
+          <div class="content-page">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul type="none" class="scroller" style="height: 600px;" data-always-visible="0" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                        <% if(trainings.length > 0) {%>
+                            <% trainings.forEach(function(training) {%>
+                                <li style="cursor: pointer;">
+                                    <h4><%= training.title %></h4>
+                                    <video style="width: 100%;" title="<%= training.description%>" training_id="<%= training._id%>" class="video_li">
+                                        <source src="<%= training.url%>" type="video/mp4">
+                                    </video>
+                                </li><hr>
+                            <%});%>
+                        <%}%>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-push-1 col-md-9" id="main_video">
+                    <% if(trainings.length > 0) {%>
+                        <h2><%= trainings[0].title%></h2>
+                        <video controls style="width: 100%;">
+                            <source src="<%= trainings[0].url%>" type="video/mp4">
+                        </video>
+                    <%} else {%>
+                        <h3 class="text-center">No video.  </h3>
+                    <%}%>
+                    
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- END CONTENT -->
+    </div>
+  </div>
+</div>
+<script src="../../js/user/training.js"></script>
