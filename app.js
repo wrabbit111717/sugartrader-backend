@@ -47,7 +47,7 @@ var app = express();
 const httpServer = http.createServer(app);
 const io = socketIo(httpServer, {
   cors: {
-    origin: 'http://89.116.74.98', // Update with your Next.js client URL
+    origin: 'http://sugartrade.com.br', // Update with your Next.js client URL
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'], // Add necessary headers for chat and file upload
     credentials: true
@@ -151,7 +151,7 @@ io.on('connection', (socket) => {
 
 
 var corsOptions = {
-  origin: "http://89.116.74.98",
+  origin: "http://sugartrade.com.br",
   // origin: "http://nardechain.io",
   methods: "POST, GET, PUT, DELETE",
 };

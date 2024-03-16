@@ -191,7 +191,7 @@ grunt test
 #### start local server for developing summernote.
 run local server with connect and watch.
 ```bash
-# this will open a browser on http://89.116.74.98.
+# this will open a browser on http://sugartrade.com.br.
 grunt server
 # If you change source code, automatically reload your page.
 ```

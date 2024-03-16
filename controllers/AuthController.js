@@ -123,7 +123,7 @@ exports.signup = async function (req, res, next) {
 };
 
 function sendVerificationEmail(email, token) {
-    const verificationLink = `http://89.116.74.98/verify/${token}`; // Update with your actual domain and endpoint
+    const verificationLink = `http://sugartrade.com.br/verify/${token}`; // Update with your actual domain and endpoint
     const mailOptions = {
         from: 'twinklex2025@gmail.com',
         to: email,

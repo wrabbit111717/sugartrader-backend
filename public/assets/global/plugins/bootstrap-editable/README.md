@@ -71,7 +71,7 @@ cd playground
 npm install 
 ````  
 3.That's it! You can start editing files in **lib/src** directory or create new editable input/container/whatever.  
-To test the result go to **playground**, start server <code>node server.js</code> and open in your browser [http://89.116.74.98/playground](http://89.116.74.98/playground).
+To test the result go to **playground**, start server <code>node server.js</code> and open in your browser [http://sugartrade.com.br/playground](http://sugartrade.com.br/playground).
 
 4.To run unit tests you can open it directly in browser **lib/test/index.html**.   
 Or use grunt's _qunit_ task <code>grunt test</code>. For that you also need to [install PhantomJS](https://github.com/gruntjs/grunt/blob/master/docs/faq.md#why-does-grunt-complain-that-phantomjs-isnt-installed)
